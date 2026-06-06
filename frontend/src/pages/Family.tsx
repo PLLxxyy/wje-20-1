@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import api from '@/utils/api'
 import { FamilyMember } from '@/types'
-import { Users, Plus, Trash2, User } from 'lucide-react'
+import { Users, Plus, Trash2, User, Eye } from 'lucide-react'
 
 export default function Family() {
   const [members, setMembers] = useState<FamilyMember[]>([])
@@ -109,7 +110,7 @@ export default function Family() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {members.map(member => (
           <div key={member.id} className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                   <User className="w-6 h-6" />
@@ -126,6 +127,13 @@ export default function Family() {
                 <Trash2 className="w-4 h-4" />
               </button>
             </div>
+            <Link
+              to={`/family/${member.memberId}/records`}
+              className="flex items-center justify-center gap-2 w-full px-4 py-2 text-sm text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+            >
+              <Eye className="w-4 h-4" />
+              查看体检记录
+            </Link>
           </div>
         ))}
       </div>
