@@ -26,7 +26,9 @@ export default function Layout() {
         </div>
         <nav className="flex-1 px-4 space-y-1">
           {navItems.map(item => {
-            const active = location.pathname === item.path
+            const active = item.path === '/'
+              ? location.pathname === '/'
+              : location.pathname.startsWith(item.path)
             const Icon = item.icon
             return (
               <Link
